@@ -1,0 +1,98 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  @apply font-Poppins scroll-smooth;
+}
+body {
+  @apply box-border bg-gray-900 text-gray-100;
+}
+.btn-primary {
+  @apply bg-cyan-600 font-semibold text-white md:mx-0 mx-auto rounded-full py-3 px-6 flex items-center gap-2;
+}
+
+.aboutImg::after {
+  @apply content-[''] w-full left-0 top-0 rounded-xl rotate-12 h-full absolute bg-gray-600 -z-10;
+}
+
+.swiper-pagination-bullet {
+  @apply bg-white;
+}
+
+input,
+textarea {
+  @apply bg-gray-700 outline-none rounded-lg p-3;
+}
+::placeholder {
+  @apply text-lg;
+}
+
+::selection {
+  @apply bg-cyan-600;
+}
+
+.banner {
+  background-image: url('./assets/images/background.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  align-self: center;
+}
+
+.bannerImg {
+  animation: updown 3s linear infinite;
+}
+
+@keyframes updown {
+  0% {
+      transform: translateY(-20px);
+  }
+  50% {
+      transform: translateY(20px);
+  }
+  100% {
+      transform: translateY(-20px);
+  }
+}
+
+.about__me-image{
+  width: 100%;
+  border-radius: 2rem;
+  overflow: hidden;
+  transition: transform 1s;
+}
+
+.app__skills-item {
+  flex-direction: column;
+  text-align: center;
+  margin: 1rem;
+  transition: all 0.3s ease-in-out;
+}
+.app__skills-item div {
+  width: 90px;
+  height: 90px;
+  line-height: 90px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fef4f5;
+}
+.app__skills-item div img {
+  width: 50%;
+  height: 50%;
+}
+.app__skills-item div:hover {
+  box-shadow: 0 0 25px #fef4f5;
+}
+
+.app__skills-item p {
+  font-weight: 500;
+  margin-top: 0.5rem;
+}
+
+.swiper-pagination {
+  bottom: -1px !important;
+}
