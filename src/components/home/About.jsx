@@ -1,5 +1,5 @@
 import React from "react";
-import aboutImg from "../assets/images/mugema.jpg";
+import aboutImg from "../../assets/images/mugema.jpg";
 const About = () => {
   const info = [
     { text: "Years experience", count: "04" },

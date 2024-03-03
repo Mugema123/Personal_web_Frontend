@@ -4,13 +4,14 @@ const Navbar = () => {
   const [sticky, setSticky] = useState(false);
   const [open, setOpen] = useState(false);
   const menuLinks = [
-    { name: "HOME", link: "#home" },
+    { name: "HOME", link: "/#home" },
     { name: "ABOUT", link: "#about" },
     { name: "SKILLS", link: "#skills" },
     { name: "SERVICES", link: "#services" },
     { name: "PROJECTS", link: "#projects" },
     { name: "CONTACT", link: "#contact" },
     { name: "VISIT MY BLOG", link: "/blog" },
+    { name: "LOGIN / SIGNUP", link: "/login" },
   ];
   useEffect(() => {
     window.addEventListener("scroll", () => {

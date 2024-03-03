@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import hero from "../assets/images/heroImage.png";
+import hero from "../../assets/images/heroImage.png";
 const Hero = () => {
   const [loopNum, setLoopNum] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);

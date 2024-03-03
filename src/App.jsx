@@ -1,27 +1,31 @@
-import React from "react";
-import Hero from "./components/Hero";
-import About from "./components/About";
-import Skills from "./components/Skills";
-import Project from "./components/Project";
-import Hireme from "./components/Hireme";
-import Contact from "./components/Contact";
-import Footer from "./components/Footer";
-import Navbar from "./components/Navbar";
-import Bot from "./components/Bot";
-import Services from "./components/Services";
+import React, { useEffect } from "react";
+import Footer from "./components/layout/Footer";
+import Navbar from "./components/layout/Navbar";
+import { Route, Routes, useLocation } from 'react-router-dom';
+import HomePage from "./components/home";
+import { Blog } from "./components/blog/Blog";
+import Author from "./components/blog/Author";
+import SingleBlog from "./components/blog/SingleBlog";
 
 const App = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
   return (
     <div>
       <Navbar />
-      <Bot />
-      <Hero />
-      <About />
-      <Skills />
-      <Services />
-      <Hireme />
-      <Project />
-      <Contact />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/author/:id" element={<Author />} />
+        <Route path="/blog/:slug" element={<SingleBlog />} />
+        {/* <Route path="/login" element={<Blog />} />
+        <Route path="/signup" element={<Membership />} />
+        <Route path="*" element={<NotFoundPage />} /> */}
+      </Routes>
       <Footer />
     </div>
   );
