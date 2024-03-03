@@ -8,6 +8,7 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import Bot from "./components/Bot";
+import Services from "./components/Services";
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
       <Hero />
       <About />
       <Skills />
+      <Services />
       <Hireme />
       <Project />
       <Contact />
