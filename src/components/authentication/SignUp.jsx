@@ -33,7 +33,7 @@ const SignUp = () => {
 
     if (errorMessage === undefined) {
       setSignUpMessage("Account created successfully, Check your email to verify this account!");
-      setSignUpMessageColor('text-green')
+      setSignUpMessageColor('text-green-800')
       toast.success(`${formData.firstName} ${formData.lastName} is registered successfully`)
       setIsLoading(false)
     }
@@ -62,7 +62,7 @@ const SignUp = () => {
       <div className="w-full p-12">
         <h1 className="text-3xl font-bold">Sign Up</h1>
         <div className="flex items-center space-x-2 my-8">
-          <div className="h-1.5 w-1/5 bg-black"></div>
+          <div className="h-1.5 w-1/5 bg-cyan-600"></div>
         </div>
         <div className="flex space-y-4 md:space-y-0 md:space-x-4 mb-10 flex-col md:flex-row">
         </div>

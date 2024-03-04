@@ -77,7 +77,7 @@ const Login = () => {
       <div className="w-full p-12">
         <h1 className="text-3xl font-bold">Sign In</h1>
         <div className="flex items-center space-x-2 my-8">
-          <div className="h-1.5 w-1/5 bg-black"></div>
+          <div className="h-1.5 w-1/5 bg-cyan-600"></div>
           <p className="text-blue font-semibold">Sign in with</p>
         </div>
         <div className="space-y-4 w-full flex justify-center items-center md:space-y-0 mb-10">

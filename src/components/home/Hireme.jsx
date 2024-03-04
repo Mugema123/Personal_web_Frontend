@@ -1,5 +1,5 @@
 import React from "react";
-import hireMe from "../../assets/images/mugema.png";
+import hireMe from "../../assets/images/mugemaHireme.png";
 const Hireme = () => {
   const handleClick = () => {
     const element = document.getElementById("contact");

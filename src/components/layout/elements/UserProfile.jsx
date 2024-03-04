@@ -42,7 +42,7 @@ const UserProfile = ({ user, Logout, isLoading }) => {
           <div
             className={`${
               isShown ? "visible" : "invisible"
-            } bg-black shadow-2xl absolute w-[150px] right-0  h-auto z-50`}
+            } bg-cyan-600 shadow-2xl absolute w-[150px] right-0  h-auto z-50`}
             onMouseOver={() => setIsShown(true)}
             onMouseOut={() => setIsShown(false)}
           >

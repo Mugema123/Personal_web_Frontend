@@ -117,6 +117,8 @@ export const forgotpassword = (formData) => async (dispatch) => {
   try {
     const { data } = await forgotPassword(formData);
 
+    localStorage.setItem('forgotPasswordToken', JSON.stringify(data?.resetPasswordToken));
+
     dispatch({ type: FORGOT_PASSWORD, data });
   
   } catch (error) {

@@ -41,7 +41,11 @@ export const logoutUser = () => {
 export const googleAuth = (formData) => API.post("/auth/googleAuth", formData);
 export const forgotPassword = (formData) =>
   API.post("/auth/forgotPassword", formData);
-export const newPassword = (formData) => API.put("/auth/newPassword", formData);
+export const newPassword = (formData) => API.put("/auth/newPassword", formData, {
+  headers: {
+    ForgotPasswordToken: JSON.parse(localStorage.getItem('forgotPasswordToken')),
+  },
+});
 export const updateUser = (formData) => API.put("/auth/updateUser", formData);
 export const showCertificateMessage = (data) =>
   API.put("/auth/certificateMessageDisplayed", data);
