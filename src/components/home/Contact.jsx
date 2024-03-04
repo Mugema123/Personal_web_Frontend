@@ -1,6 +1,77 @@
-import React from "react";
+import React, { useRef, useState, useEffect } from "react";
+import { API } from "../../api";
+import { toast } from "react-hot-toast";
+import { Toaster } from 'react-hot-toast';
+import { PulseLoader } from "react-spinners";
+
+const initState = { loading: false, error: null, message: "" };
 
 const Contact = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [message, setMessage] = useState("");
+  const [state, setState] = useState(initState);
+
+  const handleInputFocus = (e) => {
+    const label = e.target.previousSibling;
+    label.classList.add("focused");
+  };
+
+  const handleInputBlur = (e) => {
+    const input = e.target;
+    const label = input.previousSibling;
+    if (input.value === "") {
+      label.classList.remove("focused");
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (state.loading) return;
+    setState(initState);
+    try {
+      setState((prev) => ({ ...prev, loading: true }));
+      await API.post("/messages/send", {
+        names: name,
+        email,
+        phoneNumber: phone,
+        message,
+      });
+      setState((prev) => ({
+        ...prev,
+        message:
+          "Message sent successfully!",
+      }));
+      toast.success('Message sent successfully!', {
+        duration: 7000,
+        style: {
+          background: '#294B29',
+          color: '#ffffff',
+        },
+      });
+      setEmail("");
+      setName("");
+      setPhone("");
+      setMessage("");
+    } catch (error) {
+      toast.error(
+        error.response?.data?.message ||
+          error.message ||
+          "Unknown error occured, please try again."
+      );
+      setState((prev) => ({
+        ...prev,
+        error:
+          error.response?.data?.message ||
+          error.message ||
+          "Unknown error occured, please try again.",
+      }));
+    } finally {
+      setState((prev) => ({ ...prev, loading: false }));
+    }
+  };
+
   const contact_info = [
     { logo: "mail", text: "mugema@gmail.com" },
     { logo: "logo-whatsapp", text: "+1 (770) 417-6080" },
@@ -21,11 +92,63 @@ const Contact = () => {
           className="mt-16 flex md:flex-row flex-col
          gap-6 max-w-5xl bg-gray-800 md:p-6 p-2 rounded-lg mx-auto"
         >
-          <form className="flex flex-col flex-1 gap-5">
-            <input type="text" placeholder="Your Name" />
-            <input type="Email" placeholder="Your Email Address" />
-            <textarea placeholder="Your Message" rows={10}></textarea>
-            <button className="btn-primary w-fit">Send Message</button>
+          <form onSubmit={handleSubmit} className="flex flex-col flex-1 gap-5">
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Your Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              onFocus={handleInputFocus}
+              onBlur={handleInputBlur}
+            />
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={email}
+              placeholder="Your Email"
+              onChange={(e) => setEmail(e.target.value)}
+              onFocus={handleInputFocus}
+              onBlur={handleInputBlur}
+            />
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              placeholder="Your Phone Number"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              onFocus={handleInputFocus}
+              onBlur={handleInputBlur}
+            />
+            <textarea
+              type="text"
+              id="message"
+              name="message"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              onFocus={handleInputFocus}
+              onBlur={handleInputBlur}
+              placeholder="Your Message"
+              rows={7}
+            ></textarea>
+            <button className="btn-primary w-fit">
+            {
+              state.loading ? (
+                <PulseLoader
+                  color="#ffffff"
+                  loading={true}
+                  size={10}
+                  aria-label="Loading Spinner"
+                  data-testid="loader"
+                />
+              ) : (
+                "Send Message"
+              )
+            }
+            </button>
           </form>
           <div className="flex flex-col  gap-7 md:w-[30%]">
             {contact_info.map((contact, i) => (
@@ -45,6 +168,7 @@ const Contact = () => {
           </div>
         </div>
       </div>
+      <Toaster />
     </section>
   );
 };
