@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FaRegThumbsUp, FaThumbsUp } from 'react-icons/fa';
-import { toast } from 'react-toastify';
+import toast from 'react-hot-toast';
 import { likeComment } from '../../../../api';
 
 const CommentLikes = ({ likes, comment, currentUser }) => {
@@ -35,9 +35,9 @@ const CommentLikes = ({ likes, comment, currentUser }) => {
       >
         <span>Like</span>
         {!hasLiked ? (
-          <FaRegThumbsUp className="text-green" />
+          <FaRegThumbsUp className="text-cyan-600" />
         ) : (
-          <FaThumbsUp className="text-green" />
+          <FaThumbsUp className="text-cyan-600" />
         )}
         <span>{count}</span>
       </div>

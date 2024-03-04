@@ -77,19 +77,19 @@ const Searchbar = ({
       <div className="flex">
         <label
           htmlFor="location-search"
-          className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
+          className="mb-2 text-sm font-medium text-gray-900 sr-only"
         >
           Searchbar
         </label>
         <div className="relative w-full" ref={componentRef}>
           <input
             type="search"
-            className="block focus:border-white px-3 p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
-            placeholder="Search for blog posts"
+            className="block px-3 p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 placeholder:text-sm dark:text-white dark:focus:border-blue-500"
+            placeholder="Search for a blog"
             onChange={handleChange}
           />
           {isOpen && (
-            <div className="bg-white absolute top-12 left-0 w-full z-20 h-52 shadow-lg rounded-sm overflow-scroll">
+            <div className="bg-gray-600 absolute top-12 left-0 w-full z-20 h-52 shadow-lg rounded-sm overflow-auto">
               {results.length === 0 && (
                 <div className="text-sm text-center h-52 rounded-lg flex justify-center items-center">
                   {!inputValue && (

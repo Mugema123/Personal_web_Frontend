@@ -1,8 +1,16 @@
 import React, { useEffect, useState } from "react";
+import { connect } from 'react-redux';
+import { getLoggedInUser, logout } from "../../actions/auth";
+import UserProfile from "./elements/UserProfile";
 
-const Navbar = () => {
+const Navbar = ({
+  user,
+  getUser,
+  logoutUser,
+}) => {
   const [sticky, setSticky] = useState(false);
   const [open, setOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const menuLinks = [
     { name: "HOME", link: "/#home" },
     { name: "ABOUT", link: "#about" },
@@ -10,9 +18,32 @@ const Navbar = () => {
     { name: "SERVICES", link: "#services" },
     { name: "PROJECTS", link: "#projects" },
     { name: "CONTACT", link: "#contact" },
-    { name: "VISIT MY BLOG", link: "/blog" },
-    { name: "LOGIN / SIGNUP", link: "/login" },
+    { name: "BLOG", link: "/blog" },
   ];
+  console.log(user);
+  useEffect(() => {
+    if (!user) {
+      getUser();
+    }
+  }, [user]);
+
+  const Logout = () => {
+    setIsLoading(true)
+    logoutUser().then(() => window.location.reload());
+    const IsGoogleUser = localStorage.getItem('IsGoogleUser');
+    const price = localStorage.getItem('price');
+    const loggedInUser = localStorage.getItem('loggedInUser');
+    if (IsGoogleUser) {
+      localStorage.removeItem('IsGoogleUser');
+    }
+    if (price) {
+      localStorage.removeItem('price');
+    }
+    if (loggedInUser) {
+      localStorage.removeItem('loggedInUser');
+    }
+  };
+
   useEffect(() => {
     window.addEventListener("scroll", () => {
       const nav = document.querySelector("nav");
@@ -42,6 +73,7 @@ const Navbar = () => {
                 <a href={menu?.link}>{menu?.name}</a>
               </li>
             ))}
+            <UserProfile user={user} Logout={Logout} isLoading={isLoading}/>
           </ul>
         </div>
         <div
@@ -75,4 +107,16 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+const mapStateToProps = state => ({
+  user: state.auth.presentUser,
+  token: state.auth.userToken,
+});
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getUser: () => dispatch(getLoggedInUser()),
+    logoutUser: () => dispatch(logout()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

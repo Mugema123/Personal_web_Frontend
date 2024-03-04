@@ -41,9 +41,8 @@ const Author = () => {
 
   return (
     <>
-      {/* <ScrollT */}
-      <div className="md:p-8 md:px-16">
-        <div className="bg-slate-100 p-6 rounded-lg text-grey-601">
+      <div className="md:p-8 md:px-16 mt-20">
+        <div className="bg-cyan-600 p-6 md:rounded-lg text-grey-601">
           {authorError && (
             <div className="text-center text-xl font-semibold">
               Author not found
@@ -52,11 +51,19 @@ const Author = () => {
           {author && (
             <div className="md:w-1/2 mx-auto">
               <div className="flex items-center justify-center space-x-4">
-                <img
-                  src={author.img}
-                  alt={author.name}
-                  className="rounded-full w-24 h-24"
-                />
+                <div className="w-16 h-16 bg-gray-800 rounded-full flex justify-center items-center text-white">
+                        {author?.picture ? (
+                          <img
+                            src={author.picture.url}
+                            alt={`${author?.name} `}
+                            className="w-16 h-16 rounded-full"
+                          />
+                        ) : (
+                          <h1 className="font-semibold text-3xl">
+                            {author?.name[0]?.toUpperCase()}
+                          </h1>
+                        )}
+                      </div>
                 <div className="flex flex-col">
                   <h2 className="font-semibold text-black text-lg">
                     {author.name}
@@ -74,7 +81,7 @@ const Author = () => {
                   <a
                     href={author.facebook}
                     target="_blank"
-                    className="bg-green text-white p-2 text-sm rounded-md hover:bg-slate-400"
+                    className="bg-gray-800 text-white p-2 text-sm rounded-md hover:bg-slate-400"
                   >
                     <FaFacebook />
                   </a>
@@ -83,7 +90,7 @@ const Author = () => {
                   <a
                     href={author.twitter}
                     target="_blank"
-                    className="bg-green text-white p-2 text-sm rounded-md hover:bg-slate-400"
+                    className="bg-gray-800 text-white p-2 text-sm rounded-md hover:bg-slate-400"
                   >
                     <FaTwitter />
                   </a>
@@ -92,7 +99,7 @@ const Author = () => {
                   <a
                     href={author.linkedin}
                     target="_blank"
-                    className="bg-green text-white p-2 text-sm rounded-md hover:bg-slate-400"
+                    className="bg-gray-800 text-white p-2 text-sm rounded-md hover:bg-slate-400"
                   >
                     <FaLinkedinIn />
                   </a>

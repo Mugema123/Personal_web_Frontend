@@ -27,10 +27,10 @@ const RelatedPosts = ({ blogs, title }) => {
                   />
                 </div>
                 <div className="w-full flex flex-col justify-center space-y-1">
-                  <p className="text-sm text-grey-601">
+                  <p className="text-sm text-cyan-600">
                     {blog.categoryDetails?.name?.toUpperCase()}
                   </p>
-                  <p className="text-xs font-semibold hover:underline">
+                  <p className="text-sm font-semibold hover:underline">
                     {blog.title}
                   </p>
                 </div>

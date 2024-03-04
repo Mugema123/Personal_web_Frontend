@@ -6,10 +6,10 @@ import { useFetcher } from '../../api';
 import DataChecker from '../global/DataChecker';
 import LikesCommentSection from './elements/LikesCommentSection';
 import { FaBlog } from 'react-icons/fa';
+import { connect } from 'react-redux';
 
-const SingleBlog = () => {
+const SingleBlog = ({ user }) => {
   const { slug } = useParams();
-  const user = localStorage.getItem('user');
 
   const { data, isError, isLoading } = useFetcher(
     `/posts/getSinglePost?slug=${slug}`,
@@ -60,11 +60,11 @@ const SingleBlog = () => {
           : null
       }
     >
-      <div className="md:p-12 p-5 md:pt-8">
-        <span className="bg-green text-white text-xs px-2 py-1 rounded">
+      <div className="md:p-12 p-5 md:pt-8 mt-20">
+        <span className="bg-cyan-600 text-white text-xs px-2 py-1 rounded">
           {blog.categoryDetails?.name}
         </span>
-        <h1 className="my-3 text-xl md:text-3xl font-bold hover:text-slate-600">
+        <h1 className="my-3 text-xl md:text-3xl font-bold">
           {blog.title}
         </h1>
         {!blog.isPublic && (
@@ -80,7 +80,7 @@ const SingleBlog = () => {
           </div>
         )}
         <div className="flex space-x-2 items-center">
-          <div className="w-9 h-9 bg-green rounded-full flex justify-center items-center text-white">
+          <div className="w-9 h-9 bg-cyan-600 rounded-full flex justify-center items-center text-white">
             {blog.postCreator?.picture?.url ? (
               <img
                 src={blog.postCreator?.picture?.url}
@@ -88,7 +88,7 @@ const SingleBlog = () => {
                 className="h-9 w-9 rounded-full"
               />
             ) : (
-              <h1 className="font-semibold text-sm">
+              <h1 className="font-semibold text-lg">
                 {blog.postCreator?.name[0]?.toUpperCase()}
               </h1>
             )}
@@ -143,4 +143,8 @@ const SingleBlog = () => {
   );
 };
 
-export default SingleBlog;
+const mapStateToProps = state => ({
+  user: state.auth.presentUser?._id,
+});
+
+export default connect(mapStateToProps)(SingleBlog);

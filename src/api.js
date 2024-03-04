@@ -4,7 +4,7 @@ import useSWR from "swr";
 export const API = axios.create({
   baseURL: import.meta.env.VITE_APP_D_CORE_URL,
   headers: {
-    Authorization: `Bearer ${localStorage.getItem("token")}`,
+    Authorization: JSON.parse(localStorage.getItem('loggedInUser'))?.Access_Token,
   },
 });
 

@@ -89,7 +89,7 @@ const InputBox = ({
               </button>
             )}
             <button
-              className="text-xs bg-green text-white rounded-full px-3 py-1 hover:shadow-lg transition duration-300"
+              className="text-xs bg-cyan-600 text-white rounded-full px-3 py-1 hover:shadow-lg transition duration-300"
               type="submit"
             >
               {isLoading ? (

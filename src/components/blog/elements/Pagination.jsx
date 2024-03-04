@@ -7,7 +7,7 @@ const Pagination = ({ onNext, activePage, onPrev, isLast }) => {
     <div className="flex justify-center items-center my-4 mt-12">
       <div
         className={`${
-          activePage <= 1 ? 'bg-slate-400' : 'bg-green cursor-pointer'
+          activePage <= 1 ? 'bg-slate-400' : 'bg-cyan-600 cursor-pointer'
         } rounded-full p-2.5 text-center text-sm mx-1 text-white`}
         onClick={activePage > 1 ? onPrev : null}
       >
@@ -21,7 +21,7 @@ const Pagination = ({ onNext, activePage, onPrev, isLast }) => {
           {activePage - 1}
         </div>
       )}
-      <div className="bg-green rounded-full px-2.5 py-1 text-center text-sm mx-1 text-white">
+      <div className="bg-cyan-600 rounded-full px-2.5 py-1 text-center text-sm mx-1 text-white">
         {activePage}
       </div>
       {!isLast && (
@@ -34,7 +34,7 @@ const Pagination = ({ onNext, activePage, onPrev, isLast }) => {
       )}
       <div
         className={`${
-          isLast ? 'bg-slate-400' : 'bg-green cursor-pointer'
+          isLast ? 'bg-slate-400' : 'bg-cyan-600 cursor-pointer'
         } rounded-full p-2.5 text-center text-sm mx-1 text-white`}
         onClick={isLast === false ? onNext : null}
       >

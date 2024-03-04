@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FaRegThumbsUp, FaThumbsUp } from 'react-icons/fa';
 import { likePost } from '../../../api';
-import { toast } from 'react-toastify';
+import toast from 'react-hot-toast';
 
 const BlogLikes = ({ likes, post, currentUser }) => {
   const [count, setCount] = useState(likes?.length || 0);
@@ -35,9 +35,9 @@ const BlogLikes = ({ likes, post, currentUser }) => {
       >
         <span>Like</span>
         {!hasLiked ? (
-          <FaRegThumbsUp className="text-green" />
+          <FaRegThumbsUp className="text-cyan-600" />
         ) : (
-          <FaThumbsUp className="text-green" />
+          <FaThumbsUp className="text-cyan-600" />
         )}
         <span>{count}</span>
       </div>

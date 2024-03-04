@@ -2,14 +2,12 @@ import React, { useMemo, useState } from 'react';
 import { FaCommentAlt } from 'react-icons/fa';
 import BlogLikes from './Like';
 import Comments from './comments/Comments';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.min.css';
+import { Toaster } from 'react-hot-toast';
 import { useFetcher } from '../../../api';
-import CommentsData from './CommentsLoading';
+import { connect } from 'react-redux';
 
-const LikesCommentSection = ({ commentCount, id, likes }) => {
-  const [availableComments, setAvailableComments] = useState([]);
-  const user = localStorage.getItem('user');
+const LikesCommentSection = ({ commentCount, id, likes, user }) => {
+  const [availableComments, setAvailableComments] = useState([]);  
   const [commentLen, setCommentLen] = useState(commentCount || 0);
   const {
     data: commentsData,
@@ -28,7 +26,7 @@ const LikesCommentSection = ({ commentCount, id, likes }) => {
         <BlogLikes likes={likes} post={id} currentUser={user} />
         <div className="flex items-center cursor-pointer space-x-2">
           <span>Comment</span>
-          <FaCommentAlt className="text-green" />
+          <FaCommentAlt className="text-cyan-600" />
           <span>{commentLen}</span>
         </div>
       </div>
@@ -58,9 +56,13 @@ const LikesCommentSection = ({ commentCount, id, likes }) => {
         user={user}
       />
 
-      <ToastContainer />
+      <Toaster />
     </>
   );
 };
 
-export default LikesCommentSection;
+const mapStateToProps = state => ({
+  user: state.auth.presentUser,
+});
+
+export default connect(mapStateToProps)(LikesCommentSection);

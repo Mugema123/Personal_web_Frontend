@@ -21,21 +21,18 @@ const Blogs = ({
     <div className="w-full">
       {blogs.length == 0 ? (
         <div className="text-center font-semibold text-xl">
-          No more posts more available!
+          No other posts available!
         </div>
       ) : (
         <>
           <div
-            className={`grid md:${
-              cols ? 'grid-cols-3' : 'grid-cols-2'
-            } w-full px-4 md:px-0 gap-8 gap-y-7`}
+            className={`grid ${cols ? "lg:grid-cols-3" : "lg:grid-cols-2"} w-full px-4 md:px-0 gap-8 gap-y-7`}
           >
             {blogs.map((blog, index) => {
               return (
                 <div
                   key={index}
                   className="border rounded-md p-2 md:px-3"
-                  data-aos="fade-up"
                 >
                   <div className="mb-3 h-48">
                     <img
@@ -44,13 +41,13 @@ const Blogs = ({
                       className="rounded object-cover h-full w-full"
                     />
                   </div>
-                  <span className="bg-green text-white text-xs px-2 py-1 rounded">
+                  <span className="bg-cyan-600 text-white text-xs px-2 py-1 rounded">
                     {blog.categoryDetails?.name}
                   </span>
                   <h1 className="my-2">
                     <Link
                       to={`/blog/${blog.slug}`}
-                      className="md:text-xl font-semibold hover:text-slate-600"
+                      className="md:text-xl font-semibold hover:text-cyan-600"
                     >
                       {blog.title}
                     </Link>
@@ -58,7 +55,7 @@ const Blogs = ({
 
                   <div className="flex md:items-center text-sm flex-col space-y-2 md:space-y-0 md:flex-row">
                     <div className="flex space-x-2 items-center">
-                      <div className="w-9 h-9 bg-green rounded-full flex justify-center items-center text-white">
+                      <div className="w-9 h-9 bg-cyan-600 rounded-full flex justify-center items-center text-white">
                         {blog.postCreator?.picture ? (
                           <img
                             src={blog.postCreator.picture.url}
@@ -66,7 +63,7 @@ const Blogs = ({
                             className="h-9 w-9 rounded-full"
                           />
                         ) : (
-                          <h1 className="font-semibold text-sm">
+                          <h1 className="font-semibold text-lg">
                             {blog.postCreator?.name[0]?.toUpperCase()}
                           </h1>
                         )}
@@ -80,7 +77,7 @@ const Blogs = ({
                         </Link>
 
                         <span className="text-[12px] font-light md:font-normal md:text-xs text-slate-400 md:pl-4 flex">
-                          <span className="hidden md:block">/</span>
+                          <span className="hidden md:block">/ </span>
                           {moment(blog.createdAt).format('LL')}
                         </span>
                       </div>

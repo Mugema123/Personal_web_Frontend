@@ -18,8 +18,8 @@ const Reply = ({ reply, user, replyBox, added }) => {
     <>
       <div className="flex my-2">
         <Avatar
-          color="bg-slate-400"
-          letter={reply.replyCreator.name}
+          color="bg-cyan-600"
+          letter={reply?.replyCreator?.name?.charAt(0) || ''}
           image={reply.replyCreator?.picture?.url}
         />
         <div className="w-full pl-3">
@@ -38,7 +38,7 @@ const Reply = ({ reply, user, replyBox, added }) => {
             onClick={() => setShow(!show)}
           >
             <span>Reply</span>
-            <FaRegComment className="text-green" />
+            <FaRegComment className="text-cyan-600" />
           </div>
         </div>
       </div>

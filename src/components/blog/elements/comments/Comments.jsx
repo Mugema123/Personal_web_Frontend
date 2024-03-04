@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import InputBox from './InputBox';
 import SingleComment from './SingleComment';
 import { addComment, deleteComment } from '../../../../api';
-import { toast } from 'react-toastify';
+import toast from 'react-hot-toast';
 import CommentsData from '../CommentsLoading';
 
 const Comments = ({

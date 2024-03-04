@@ -4,7 +4,7 @@ import { addReply, updateComment, useFetcher } from '../../../../api';
 import Avatar from './Avatar';
 import InputBox from './InputBox';
 import Reply from './SingleReply';
-import { toast } from 'react-toastify';
+import toast from 'react-hot-toast';
 import CommentLikes from './CommentLikes';
 import PopupModal from '../../../global/PopupModal';
 
@@ -15,7 +15,6 @@ const SingleComment = ({
   isDeleting,
   onEdit,
 }) => {
-  // console.log(comment);
   const [showReplyTextbox, setShowReplyTextbox] = useState(false);
   const [openModal, setOpenModal] = useState(false);
 
@@ -153,7 +152,7 @@ const SingleComment = ({
                 }
               >
                 <span>Reply</span>
-                <FaCommentAlt className="text-green" />{' '}
+                <FaCommentAlt className="text-cyan-600" />{' '}
                 <span>{commentReplies.length}</span>
               </div>
               {isOwner && (
@@ -165,7 +164,7 @@ const SingleComment = ({
                       return setShowReplyTextbox(true);
                     }}
                   >
-                    <FaEdit className="text-green" />{' '}
+                    <FaEdit className="text-cyan-600" />{' '}
                     <span>Edit</span>
                   </div>
                   <div
@@ -231,7 +230,7 @@ const SingleComment = ({
       <PopupModal
         onClose={handleCloseModal}
         show={openModal}
-        title={'Confirm Delete!'}
+        title={'Delete Comment'}
       >
         <div>Are you sure do you want to delete this comment</div>
         <p className="my-2 font-semibold text-center">
@@ -245,7 +244,7 @@ const SingleComment = ({
             Cancel
           </button>
           <button
-            className="bg-green rounded-full px-4 py-1 hover:shadow-lg mx-4 my-2"
+            className="bg-green-800 rounded-full px-4 py-1 hover:shadow-lg mx-4 my-2"
             onClick={() => {
               handleCloseModal();
               setShowReplyTextbox(false);

@@ -47,15 +47,15 @@ export const Blog = () => {
   );
 
   return (
-    <div className=''>
+    <div>
       {!blogsLoading && !firstBlog && !blogsError ? (
-        <div className="flex justify-center w-full items-center py-12 text-center">
+        <div className="flex justify-center w-full items-center py-12 text-center mt-20">
           <p className="text-gray-500 text-xl">
             There are no blogs available yet!
           </p>
         </div>
       ) : (
-        <div className="md:p-8 md:px-16">
+        <div className="md:p-8 md:px-16 mt-20">
           {firstBlog ? <FeatureBlog blog={firstBlog} /> : null}
           <Searchbar
             currentLabel={currentCategoryData?.name || 'All'}

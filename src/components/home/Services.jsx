@@ -34,7 +34,6 @@ const Services = () => {
                 >
                   <div
                     className="z-10 flex h-full flex-col bg-gray-700 rounded-xl p-8 md:p-12"
-                    data-aos="zoom-in"
                   >
                     <h1 className="font-semibold text-xl tracking-wide">
                       {service?.serviceTitle}
