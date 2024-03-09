@@ -1,18 +1,18 @@
-import moment from 'moment';
-import { Link } from 'react-router-dom';
-import Pagination from './Pagination';
-import { useNavigate, useLocation } from 'react-router-dom';
+import moment from "moment";
+import { Link } from "react-router-dom";
+import Pagination from "./Pagination";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Blogs = ({
   blogs = [],
   cols,
-  setNewPage = page => {},
+  setNewPage = (page) => {},
   pages = 1,
   page = 1,
 }) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const moveToPage = page => {
+  const moveToPage = (page) => {
     setNewPage(page);
     navigate(`${location.pathname}?page=${page}`);
   };
@@ -20,20 +20,20 @@ const Blogs = ({
   return (
     <div className="w-full">
       {blogs.length == 0 ? (
-        <div className="text-center font-semibold text-xl">
-          No other posts available!
+        <div className="flex flex-col justify-center w-full items-center py-12 text-center">
+          <img src="/src/assets/images/noData1.png" alt="empty image" />
+          <p className="text-cyan-600 text-xl">Other posts will appear here</p>
         </div>
       ) : (
         <>
           <div
-            className={`grid ${cols ? "lg:grid-cols-3" : "lg:grid-cols-2"} w-full px-4 md:px-0 gap-8 gap-y-7`}
+            className={`grid ${
+              cols ? "lg:grid-cols-3" : "lg:grid-cols-2"
+            } w-full px-4 md:px-0 gap-8 gap-y-7`}
           >
             {blogs.map((blog, index) => {
               return (
-                <div
-                  key={index}
-                  className="border rounded-md p-2 md:px-3"
-                >
+                <div key={index} className="border rounded-md p-2 md:px-3">
                   <div className="mb-3 h-48">
                     <img
                       src={blog.postImage}
@@ -78,7 +78,7 @@ const Blogs = ({
 
                         <span className="text-[12px] font-light md:font-normal md:text-xs text-slate-400 md:pl-4 flex">
                           <span className="hidden md:block">/ </span>
-                          {moment(blog.createdAt).format('LL')}
+                          {moment(blog.createdAt).format("LL")}
                         </span>
                       </div>
                     </div>

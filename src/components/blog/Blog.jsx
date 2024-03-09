@@ -49,8 +49,9 @@ export const Blog = () => {
   return (
     <div>
       {!blogsLoading && !firstBlog && !blogsError ? (
-        <div className="flex justify-center w-full items-center py-12 text-center mt-20">
-          <p className="text-gray-500 text-xl">
+        <div className="flex flex-col justify-center h-screen w-full items-center py-12 text-center">
+          <img src="/src/assets/images/noData1.png" alt="empty image" />
+          <p className="text-cyan-600 text-xl">
             There are no blogs available yet!
           </p>
         </div>
@@ -73,9 +74,10 @@ export const Blog = () => {
           </h1>
           <div className="flex flex-col md:flex-row items-start space-y-8 md:space-y-0 md:space-x-10">
             <DataChecker
-              title={'News and events'}
+              title={'Blogs'}
               isLoading={blogsLoading}
               isError={blogsError}
+              isWhiteMode={true}
             >
               <Blogs
                 setNewPage={page => {

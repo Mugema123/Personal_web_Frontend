@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 import { getLoggedInUser, logout } from "../../actions/auth";
 import UserProfile from "./elements/UserProfile";
 
-const Navbar = ({
-  user,
-  getUser,
-  logoutUser,
-}) => {
+const Navbar = ({ user, getUser, logoutUser }) => {
   const [sticky, setSticky] = useState(false);
   const [open, setOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -20,7 +16,7 @@ const Navbar = ({
     { name: "CONTACT", link: "#contact" },
     { name: "BLOG", link: "/blog" },
   ];
-  console.log(user);
+
   useEffect(() => {
     if (!user) {
       getUser();
@@ -28,19 +24,19 @@ const Navbar = ({
   }, [user]);
 
   const Logout = () => {
-    setIsLoading(true)
+    setIsLoading(true);
     logoutUser().then(() => window.location.reload());
-    const IsGoogleUser = localStorage.getItem('IsGoogleUser');
-    const price = localStorage.getItem('price');
-    const loggedInUser = localStorage.getItem('loggedInUser');
+    const IsGoogleUser = localStorage.getItem("IsGoogleUser");
+    const price = localStorage.getItem("price");
+    const loggedInUser = localStorage.getItem("loggedInUser");
     if (IsGoogleUser) {
-      localStorage.removeItem('IsGoogleUser');
+      localStorage.removeItem("IsGoogleUser");
     }
     if (price) {
-      localStorage.removeItem('price');
+      localStorage.removeItem("price");
     }
     if (loggedInUser) {
-      localStorage.removeItem('loggedInUser');
+      localStorage.removeItem("loggedInUser");
     }
   };
 
@@ -73,16 +69,18 @@ const Navbar = ({
                 <a href={menu?.link}>{menu?.name}</a>
               </li>
             ))}
-            <UserProfile user={user} Logout={Logout} isLoading={isLoading}/>
+            <UserProfile user={user} Logout={Logout} isLoading={isLoading} />
           </ul>
         </div>
         <div
-          onClick={() => setOpen(!open)}
-          className={`z-[999]  ${
+          className={`flex items-center gap-3 z-[999] list-none  ${
             open ? "text-gray-900" : "text-gray-100"
-          } text-3xl md:hidden m-5`}
+          } md:hidden m-5`}
         >
-          <ion-icon name="menu"></ion-icon>
+          <UserProfile user={user} Logout={Logout} isLoading={isLoading} />
+          <div className="text-3xl -mb-2">
+            <ion-icon name="menu" onClick={() => setOpen(!open)}></ion-icon>
+          </div>
         </div>
         <div
           className={`md:hidden text-gray-900 absolute w-2/3 h-screen
@@ -107,12 +105,12 @@ const Navbar = ({
   );
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   user: state.auth.presentUser,
   token: state.auth.userToken,
 });
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     getUser: () => dispatch(getLoggedInUser()),
     logoutUser: () => dispatch(logout()),

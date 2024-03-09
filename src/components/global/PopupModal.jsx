@@ -4,7 +4,7 @@ import { FaTimes } from 'react-icons/fa';
 const PopupModal = ({ title, show, onClose, children }) => {
   return (
     <div
-      className={`fixed z-[9999999] md:pt-[10%] pt-[20%] left-0 top-[15%] w-full  backdrop-blur-[2px] h-full bg-[rgba(0,0,0,0.59)] ${
+      className={`fixed z-[9999999] md:pt-[10%] pt-[20%] left-0 top-[10%] w-full  backdrop-blur-[2px] h-full bg-[rgba(0,0,0,0.59)] ${
         show ? '' : 'hidden'
       }`}
     >

@@ -11,7 +11,7 @@ const DataChecker = ({
 }) => {
   if (isLoading) {
     return (
-      <div className="flex flex-col justify-center items-center my-12 space-y-6 flex-grow">
+      <div className="flex h-screen flex-col justify-center items-center my-12 space-y-6 flex-grow">
         <PulseLoader
           color={isWhiteMode ? '#ffffff' : '#000000'}
           loading={true}

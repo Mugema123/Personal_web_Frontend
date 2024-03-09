@@ -50,6 +50,7 @@ const SingleBlog = ({ user }) => {
     <DataChecker
       title={'Post'}
       isLoading={isLoading}
+      isWhiteMode={true}
       isError={
         isError
           ? isError
