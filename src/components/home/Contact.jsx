@@ -73,11 +73,11 @@ const Contact = () => {
   };
 
   const contact_info = [
-    { logo: "mail", text: "mugema@gmail.com" },
+    { logo: "mail", text: "mugemaleo@gmail.com" },
     { logo: "logo-whatsapp", text: "+1 (770) 417-6080" },
     {
       logo: "location",
-      text: "Rwanda, Kigali, KK4Ave",
+      text: "USA, Georgia-Atlanta",
     },
   ];
   return (
